@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { FaPlay, FaPause } from "react-icons/fa";
 import useSound from "use-sound";
 
@@ -31,10 +31,20 @@ const MusicCard: React.FC<MusicCardProps> = ({ selectedSong }) => {
   const artistName = Array.isArray(artist) ? artist.join(", ") : artist;
 
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef<HTMLAudioElement>(null);
+  const [play, { stop }] = useSound(URL.createObjectURL(selectedSong.file), {
+    volume: 1,
+    sprite: {
+      play: [0, (format.duration || 100) * 1000],
+    },
+  });
 
   const togglePlayPause = () => {
     setIsPlaying(!isPlaying);
+    if (isPlaying) {
+      stop();
+    } else {
+      play({ id: "play" });
+    }
   };
 
   ///////////////////////////////////////////////
@@ -89,17 +99,7 @@ const MusicCard: React.FC<MusicCardProps> = ({ selectedSong }) => {
             </button>
           </div>
         </div>
-        <div>
-          <input
-            type="range"
-            min="0"
-            max={format.duration || 100}
-            step="1"
-            value={audioRef.current ? audioRef.current.currentTime : 0}
-            onChange={() => {}}
-            className="slider"
-          />
-        </div>
+        <div>Slider</div>
       </div>
       <h2 className="text-[13px] text-center">GB63913710211241047</h2>
       <div className="flex justify-center items-center">
@@ -117,7 +117,6 @@ const MusicCard: React.FC<MusicCardProps> = ({ selectedSong }) => {
           )}
         </div>
       </div>
-      <audio ref={audioRef} src={URL.createObjectURL(selectedSong.file)} />
     </div>
   );
 };
