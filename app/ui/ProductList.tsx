@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
-
+import Link from "next/link";
 interface Product {
   id: number;
   title: string;
@@ -69,32 +69,34 @@ const ProductList: React.FC = () => {
   return (
     <div className="grid container px-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       {products.map((product) => (
-        <div
-          key={product.key}
-          className="bg-white p-4 rounded-lg shadow-md overflow-hidden"
-        >
-          <div className="relative w-full h-32 mb-4">
-            <div className="flex w-full h-full overflow-hidden">
-              {product.images.map((image, index) => (
-                <Image
-                  width={400}
-                  height={400}
-                  priority={true}
-                  key={index}
-                  src={image}
-                  alt={`${product.title} - Image ${index + 1}`}
-                  className="w-full h-full object-cover"
-                />
-              ))}
+        <Link key={product.id} href={`/product/${product.id}`} passHref>
+          <div
+            key={product.key}
+            className="bg-white p-4 rounded-lg shadow-md overflow-hidden"
+          >
+            <div className="relative w-full h-32 mb-4">
+              <div className="flex w-full h-full overflow-hidden">
+                {product.images.map((image, index) => (
+                  <Image
+                    width={400}
+                    height={400}
+                    priority={true}
+                    key={index}
+                    src={product.images[0]}
+                    alt={`${product.title} - Image ${index + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                ))}
+              </div>
+            </div>
+            <p className="text-gray-800 font-bold mb-2">{product.title}</p>
+            <p className="text-gray-600 mb-2">${product.price}</p>
+            <div className="flex items-center text-gray-500">
+              <span className="mr-2">{product.rating} Rating</span>
+              <span>{product.stock} In Stock</span>
             </div>
           </div>
-          <p className="text-gray-800 font-bold mb-2">{product.title}</p>
-          <p className="text-gray-600 mb-2">${product.price}</p>
-          <div className="flex items-center text-gray-500">
-            <span className="mr-2">{product.rating} Rating</span>
-            <span>{product.stock} In Stock</span>
-          </div>
-        </div>
+        </Link>
       ))}
     </div>
   );
