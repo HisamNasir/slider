@@ -1,10 +1,12 @@
 import Head from "next/head";
 import NewsFeed from "./ui/NewsFeed";
+import ProductList from "./ui/ProductList";
 const Home: React.FC = () => {
   return (
     <main>
       <div className=" flex flex-col items-center ">
-        <NewsFeed />
+        {/* <NewsFeed /> */}
+        <ProductList />
       </div>
     </main>
   );
