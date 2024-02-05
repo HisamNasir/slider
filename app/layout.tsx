@@ -20,7 +20,7 @@ export default function RootLayout({
         <div className=" relative">
           <nav className="absolute text-center w-full z-10 h-14 bg-slate-900 text-white ">
             <h1 className=" flex h-full justify-center items-center font-extrabold tracking-widest text-xl">
-              Social Media Feed
+              Store
             </h1>
           </nav>
           <div className="pt-20">{children}</div>

@@ -1,4 +1,4 @@
-"use client"; // src/components/ProductList.tsx
+"use client";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
@@ -23,7 +23,6 @@ const ProductList: React.FC = () => {
   const [pageNumber, setPageNumber] = useState(1);
 
   useEffect(() => {
-    // Load initial set of 16 products on component mount
     loadProducts();
   }, []);
 
@@ -33,7 +32,6 @@ const ProductList: React.FC = () => {
       .then((response) => {
         const newProducts = response.data.products;
 
-        // Check if newProducts is an array
         if (Array.isArray(newProducts)) {
           setProducts((prevProducts) => [
             ...prevProducts,
@@ -57,7 +55,6 @@ const ProductList: React.FC = () => {
       window.innerHeight + window.scrollY >=
       document.body.offsetHeight - 200
     ) {
-      // Load next set of products when user scrolls to the bottom
       loadProducts();
     }
   };
@@ -73,12 +70,10 @@ const ProductList: React.FC = () => {
     <div className="grid container px-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       {products.map((product) => (
         <div
-          key={product.key} // <-- Use product.key as the key
+          key={product.key}
           className="bg-white p-4 rounded-lg shadow-md overflow-hidden"
         >
-          {/* Your product content */}
           <div className="relative w-full h-32 mb-4">
-            {/* Image slider */}
             <div className="flex w-full h-full overflow-hidden">
               {product.images.map((image, index) => (
                 <Image
@@ -99,7 +94,6 @@ const ProductList: React.FC = () => {
             <span className="mr-2">{product.rating} Rating</span>
             <span>{product.stock} In Stock</span>
           </div>
-          {/* Add more styling as needed */}
         </div>
       ))}
     </div>

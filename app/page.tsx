@@ -1,5 +1,5 @@
 import Head from "next/head";
-import NewsFeed from "./ui/NewsFeed";
+// import NewsFeed from "./ui/NewsFeed";
 import ProductList from "./ui/ProductList";
 const Home: React.FC = () => {
   return (
