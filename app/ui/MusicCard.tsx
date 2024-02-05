@@ -1,8 +1,11 @@
 "use client";
+
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { FaPlay, FaPause } from "react-icons/fa";
 import useSound from "use-sound";
+import AudioPlayer, { RHAP_UI } from "react-h5-audio-player";
+import "react-h5-audio-player/lib/styles.css";
 
 interface MusicCardProps {
   selectedSong: {
@@ -38,12 +41,20 @@ const MusicCard: React.FC<MusicCardProps> = ({ selectedSong }) => {
     },
   });
 
+  const audioRef = useRef<HTMLAudioElement>(null);
+
   const togglePlayPause = () => {
     setIsPlaying(!isPlaying);
     if (isPlaying) {
       stop();
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
     } else {
       play({ id: "play" });
+      if (audioRef.current) {
+        audioRef.current.play();
+      }
     }
   };
 
@@ -84,22 +95,38 @@ const MusicCard: React.FC<MusicCardProps> = ({ selectedSong }) => {
         </div>
       </div>
       <div className=" flex flex-col gap-[5px]">
-        <div
-          id="PlayPauseandSliderSection"
-          className=" relative flex px-6 py-2"
-        >
-          <p className="text-[14px] flex items-start w-1/3">$25.00 US</p>
-          <div className="flex justify-center w-1/3">
-            <button className="p-2 absolute" onClick={togglePlayPause}>
-              {isPlaying ? (
-                <FaPause className="text-[#990000] z-10 w-[17px] h-5" />
-              ) : (
-                <FaPlay className="text-[#990000] z-10 w-[17px] h-5" />
-              )}
-            </button>
-          </div>
+        <div id="PlayPauseandSliderSection" className=" relative flex ">
+          <p className="text-[14px] absolute mx-6 mt-2 flex items-start w-1/3">
+            $25.00 US
+          </p>
+          <AudioPlayer
+            src={URL.createObjectURL(selectedSong.file)}
+            autoPlayAfterSrcChange={false}
+            showJumpControls={false}
+            customAdditionalControls={[]}
+            customVolumeControls={[]}
+            customIcons={{
+              play: (
+                <FaPlay className="mt-2 mx-auto text-[#990000] z-10 w-5 h-5" />
+              ),
+              pause: (
+                <FaPause className="mt-2 mx-auto text-[#990000] z-10 w-5 h-5" />
+              ),
+            }}
+            layout="stacked-reverse"
+            ref={audioRef}
+            customProgressBarSection={[RHAP_UI.PROGRESS_BAR]}
+            style={{
+              border: "none",
+              outline: "none",
+              boxShadow: "none",
+              margin: "0",
+              padding: "0",
+              paddingLeft: "24px",
+              paddingRight: "24px",
+            }}
+          />
         </div>
-        <div>Slider</div>
       </div>
       <h2 className="text-[13px] text-center">GB63913710211241047</h2>
       <div className="flex justify-center items-center">

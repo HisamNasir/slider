@@ -3,3 +3,14 @@
 @tailwind utilities;
 body {
 }
+.rhap_progress-filled {
+  background-color: #990000; /* Change the color of the completed section */
+}
+
+.rhap_progress-bar {
+  background-color: white; /* Change the color of the remaining bar */
+}
+.rhap_controls-section {
+  padding: 0px;
+  margin: 0px;
+}
