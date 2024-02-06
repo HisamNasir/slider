@@ -84,10 +84,12 @@ const MusicCard: React.FC<MusicCardProps> = ({ selectedSong }) => {
               alt={""}
             />
           </div>
-          <div className="flex w-full overflow-hidden h-full items-end">
-            <div className=" text-[14px] w-full px-2 pb-2 flex flex-col gap-3">
-              <h2 className="text-end min-w-max">{title}</h2>
-              <h2 className="text-end overflow-hidden font-semibold italic">
+          <div className="flex w-[85%] overflow-hidden h-full items-end">
+            <div className=" text-[14px] w-full px-8 pb-2 over flex flex-col gap-3">
+              <h2 className="text-end min-w-max overflow-hidden w-full">
+                {title}
+              </h2>
+              <h2 className="text-end overflow-hidden min-w-max font-semibold italic">
                 {artistName}
               </h2>
             </div>
@@ -96,7 +98,7 @@ const MusicCard: React.FC<MusicCardProps> = ({ selectedSong }) => {
       </div>
       <div className=" flex flex-col gap-[5px]">
         <div id="PlayPauseandSliderSection" className=" relative flex ">
-          <p className="text-[14px] absolute mx-6 mt-2 flex items-start w-1/3">
+          <p className="text-[14px] absolute z-10 ml-6 mt-2 flex items-start w-1/3">
             $25.00 US
           </p>
           <AudioPlayer
@@ -124,12 +126,13 @@ const MusicCard: React.FC<MusicCardProps> = ({ selectedSong }) => {
               padding: "0",
               paddingLeft: "24px",
               paddingRight: "24px",
+              transform: "translateY(-8px)",
             }}
           />
         </div>
       </div>
-      <h2 className="text-[13px] text-center">GB63913710211241047</h2>
-      <div className="flex justify-center items-center">
+      <h2 className="text-[13px] text-center ">GB63913710211241047</h2>
+      <div className="flex justify-center items-center mt-2">
         <div className="h-[268px] w-[268px] object-cover rounded-2xl bg-slate-400 flex">
           {picture && picture.length > 0 && (
             <Image

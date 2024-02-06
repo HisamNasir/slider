@@ -21,11 +21,13 @@ const Home = () => {
   return (
     <main>
       <div className=" flex flex-col items-center ">
-        <div>
-          <h1>Welcome to Your Music App!</h1>
-          <input type="file" accept="audio/*" onChange={handleFileChange} />
-          {selectedSong && <MusicCard selectedSong={selectedSong} />}
-        </div>
+        <input
+          className=" m-8 border p-8 text-white rounded-xl"
+          type="file"
+          accept="audio/*"
+          onChange={handleFileChange}
+        />
+        {selectedSong && <MusicCard selectedSong={selectedSong} />}
       </div>
     </main>
   );
