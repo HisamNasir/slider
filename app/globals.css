@@ -4,13 +4,23 @@
 body {
 }
 .rhap_progress-filled {
-  background-color: #990000; /* Change the color of the completed section */
+  background-color: #990000;
+  border-radius: 0px;
 }
-
+.rhap_progress-container {
+  padding: 0px;
+  margin: 0px;
+}
 .rhap_progress-bar {
-  background-color: white; /* Change the color of the remaining bar */
+  background-color: black;
+  border-radius: 0px;
+  height: 15%;
 }
 .rhap_controls-section {
   padding: 0px;
   margin: 0px;
+  height: 28px;
+}
+.rhap_progress-indicator {
+  display: none;
 }

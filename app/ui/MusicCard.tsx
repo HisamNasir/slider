@@ -1,12 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaPlay, FaPause } from "react-icons/fa";
 import useSound from "use-sound";
 import AudioPlayer, { RHAP_UI } from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
-
+import "@/app/globals.css";
 interface MusicCardProps {
   selectedSong: {
     file: File;
@@ -124,15 +124,14 @@ const MusicCard: React.FC<MusicCardProps> = ({ selectedSong }) => {
               boxShadow: "none",
               margin: "0",
               padding: "0",
-              paddingLeft: "24px",
-              paddingRight: "24px",
-              transform: "translateY(-8px)",
+              paddingLeft: "22px",
+              paddingRight: "22px",
             }}
           />
         </div>
       </div>
-      <h2 className="text-[13px] text-center ">GB63913710211241047</h2>
-      <div className="flex justify-center items-center mt-2">
+      <h2 className="text-[13px] text-center mt-1 ">GB63913710211241047</h2>
+      <div className="flex justify-center items-center mt-3">
         <div className="h-[268px] w-[268px] object-cover rounded-2xl bg-slate-400 flex">
           {picture && picture.length > 0 && (
             <Image
